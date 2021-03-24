@@ -6,7 +6,7 @@ Hengshi Yu
 
 Causal effects:
 
-1. Counterfactual/potential outcome assumptions $Y^{a}$:
+1. Counterfactual/potential outcome assumptions ```math Y^{a}```:
 	- Outcome invariant to the treatment assignment (exchangeability). 
 	- Equal to the observed outcome $Y$ under that treatment (consistency). 
 	- Could be observed in population (positivity). 

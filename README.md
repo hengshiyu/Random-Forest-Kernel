@@ -1,4 +1,4 @@
-# Random forest kernel: nonparametric predition of kernel causal effects
+# Random forest kernel: nonparametric prediction of kernel causal effects
 Hengshi Yu
 
 

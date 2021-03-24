@@ -83,21 +83,21 @@ Then, causal effect is estimated "estimate":`E(Y | A1 = a1, ..., AK = aK)` -  `E
 ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `True`
 ![#1589F0](https://via.placeholder.com/15/1589F0/000000?text=+) `RF 1`
 
-<img align="center" src="results/figs/rf.png" width="600">
+<img align="center" src="results/figs/rf_1.png" width="600">
 
 ## RF kernel width 0.1
 
 ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `True`
 ![#FFA500](https://via.placeholder.com/15/FFA500/000000?text=+) `RF 0.1`
 
-<img align="center" src="results/figs/rf_1.png" width="600">
+<img align="center" src="results/figs/rf_01.png" width="600">
 
 ## RF kernel width 0.01
 
 ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `True`
 ![#800080](https://via.placeholder.com/15/800080/000000?text=+) `RF 0.01`
 
-<img align="center" src="results/figs/rf_01.png" width="600">
+<img align="center" src="results/figs/rf.png" width="600">
 
 ## References
 * Liang, K. Y., & Zeger, S. L. (1986). Longitudinal data analysis using generalized linear models. Biometrika, 73(1), 13-22.

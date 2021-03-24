@@ -60,7 +60,7 @@ Then, causal effect is estimated "estimate":`E(Y | A1 = a1, ..., AK = aK)` -  `E
     `mu(ij) = b0 + b1 Ai` ==>  `b1`
 2. GEE complex 1:
     `mu(ij) = b0 + b1  Ai + b2 Ai^2 + b3 Ai^3` ==> `b1 + 2 b2 Ai + 3b3 Ai^2`
-3. GEE complex 2: `mu(ij) = b0 + b1  Ai + b2 Ai^2 + b3 Ai^3 + b4 Ai^4` ==> $b1 + + 2 b2 Ai + 3b3 Ai^2 + 4b4Ai^4$
+3. GEE complex 2: `mu(ij) = b0 + b1  Ai + b2 Ai^2 + b3 Ai^3` ==> `b1 + + 2 b2 Ai + 3b3 Ai^2`
 4. Random forest kernel:
     Train `Yi = RF(Ai)`$\\
    - E(Y | Ai = a + 1) - E(Y|Ai = a )
@@ -70,26 +70,33 @@ Then, causal effect is estimated "estimate":`E(Y | A1 = a1, ..., AK = aK)` -  `E
 
 ## GEE
 
-![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `true`
-![#1589F0](https://via.placeholder.com/15/1589F0/000000?text=+) `naive`
-![#800080](https://via.placeholder.com/15/800080/000000?text=+) `naive`
-![#FFA500](https://via.placeholder.com/15/FFA500/000000?text=+) `naive`
+![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `True`
+![#1589F0](https://via.placeholder.com/15/1589F0/000000?text=+) `GEE`
+![#FFA500](https://via.placeholder.com/15/FFA500/000000?text=+) `GEE complex 1`
+![#800080](https://via.placeholder.com/15/800080/000000?text=+) `GEE complex 2`
+
 
 <img align="center" src="results/figs/gee.png" width="600">
 
 
 ## RF kernel width 1
 
+![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `True`
+![#1589F0](https://via.placeholder.com/15/1589F0/000000?text=+) `RF 1`
 
 <img align="center" src="results/figs/rf.png" width="600">
 
 ## RF kernel width 0.1
 
+![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `True`
+![#FFA500](https://via.placeholder.com/15/FFA500/000000?text=+) `RF 0.1`
 
 <img align="center" src="results/figs/rf_1.png" width="600">
 
 ## RF kernel width 0.01
 
+![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `True`
+![#800080](https://via.placeholder.com/15/800080/000000?text=+) `RF 0.01`
 
 <img align="center" src="results/figs/rf_01.png" width="600">
 

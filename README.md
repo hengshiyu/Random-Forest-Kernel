@@ -54,7 +54,7 @@ Then, causal effect is estimated "estimate":`E(Y | A1 = a1, ..., AK = aK)` -  `E
 - does not have the asymptotic inferences on the estimator
 
 ## Kernel Causal effects
-<img align="center" src="experiments/figs/MDP.png" width="600">
+<img align="center" src="results/figs/MDP.png" width="600">
 
 1. GEE:
     `mu(ij) = b0 + b1 Ai` ==>  `b1`
@@ -70,23 +70,29 @@ Then, causal effect is estimated "estimate":`E(Y | A1 = a1, ..., AK = aK)` -  `E
 
 ## GEE
 
-<img align="center" src="experiments/figs/gee.png" width="600">
+<span style="color:red">some *truth* text</span>, 
+<span style="color:blue">some *naive* text</span>.
+<span style="color:orange">some *Complex 1* text</span>.
+<span style="color:purple">some *Complex 2* text</span>.
+
+
+<img align="center" src="results/figs/gee.png" width="600">
 
 
 ## RF kernel width 1
 
 
-<img align="center" src="experiments/figs/rf.png" width="600">
+<img align="center" src="results/figs/rf.png" width="600">
 
 ## RF kernel width 0.1
 
 
-<img align="center" src="experiments/figs/rf_1.png" width="600">
+<img align="center" src="results/figs/rf_1.png" width="600">
 
 ## RF kernel width 0.01
 
 
-<img align="center" src="experiments/figs/rf_01.png" width="600">
+<img align="center" src="results/figs/rf_01.png" width="600">
 
 ## References
 * Liang, K. Y., & Zeger, S. L. (1986). Longitudinal data analysis using generalized linear models. Biometrika, 73(1), 13-22.

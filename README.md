@@ -72,8 +72,8 @@ Then, causal effect is estimated "estimate":`E(Y | A1 = a1, ..., AK = aK)` -  `E
 
 ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `true`
 ![#1589F0](https://via.placeholder.com/15/1589F0/000000?text=+) `naive`
-<span style="color:orange">some *Complex 1* text</span>.
-<span style="color:purple">some *Complex 2* text</span>.
+![#800080](https://via.placeholder.com/15/800080/000000?text=+) `naive`
+![#FFA500](https://via.placeholder.com/15/FFA500/000000?text=+) `naive`
 
 <img align="center" src="results/figs/gee.png" width="600">
 

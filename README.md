@@ -1,4 +1,4 @@
-# Random Forest Kernel: Nonparametric Predition of Kernel Causal Effects
+# Random forest kernel: nonparametric predition of kernel causal effects
 Hengshi Yu
 
 
@@ -6,12 +6,12 @@ Hengshi Yu
 
 Causal effects:
 
-1. Counterfactual/potential outcome assumptions ```math Y^{a}```:
+1. Counterfactual/potential outcome assumptions:
 	- Outcome invariant to the treatment assignment (exchangeability). 
 	- Equal to the observed outcome $Y$ under that treatment (consistency). 
 	- Could be observed in population (positivity). 
 
-2. Marginal causal effect $\mathbb{E}(Y^{a = 1}) - \mathbb{E}(Y^{a = 1})$ via inference on $\mathbb{E}(Y\mid A = 1) - \mathbb{E}(Y\mid A = 0)$
+2. Marginal causal effect `E[Y(a = 1)] - E[Y(a = 1)]` via inference on `E(Y | A = 1) - E(Y | A = 0)`. 
 
 
 Motivation:
@@ -20,7 +20,7 @@ Motivation:
 2. Treatment is a combination, rather than a simple variable
 3. Causal effect depends on the treatment values. 
 
-How to estimate the marginal causal effects in longitudinal data under specific continuous treatment value $(A_1 = a_1, \ldots, A_K = a_K)$, when the causal effect depends on the treatment value?
+How to estimate the marginal causal effects in longitudinal data under specific continuous treatment value, when the causal effect depends on the treatment value?
 
 
 <img align="center" src="imgs/Q-learning.png" width="600">

@@ -54,7 +54,6 @@ Then, causal effect is estimated "estimate":`E(Y | A1 = a1, ..., AK = aK)` -  `E
 - does not have the asymptotic inferences on the estimator
 
 ## Kernel Causal effects
-<img align="center" src="results/figs/MDP.png" width="600">
 
 1. GEE:
     `mu(ij) = b0 + b1 Ai` ==>  `b1`

@@ -1,6 +1,4 @@
 
-
-
 ###############  Simulation Study ################################
 ###############  Continuous Outcome ##############################
 ###############  Hengshi Yu ######################################
@@ -8,7 +6,6 @@ library(mvtnorm)
 library(geepack)
 library(randomForest)
 library(MASS)
-source("geenonpa.R")
 
 n <- 1000
 m <- 5
@@ -57,10 +54,7 @@ simu <- function(n, m, data_use = NULL){
     idmatrix[i,] <- i
   }
 
-  # variances for kgee
-  Vpost_naive <- cov(as.matrix(y))
-  Vuse1 <- bdiag(lapply(1:n, function(i) solve(Vpost_naive)))
-  Vuse2 <- diag(rep(solve(killoffdiag(Vpost_naive)), n)) 
+
 
   # yobs
   yob<-as.vector(t(y)) ## transpose the outcome matrix to be a vector
@@ -99,14 +93,8 @@ simu <- function(n, m, data_use = NULL){
   
   h_value <- (A_list[2] - A_list[1])
 
-  gee_non_para =  kgee(x= treatment, y= yob, h = h_value, xgrid= A_list,  id=id, V1= Vuse2)$f
-  gee_non_para_1 =  kgee(x= treatment, y= yob, h = h_value, xgrid= A_list + 1,  id=id, V1= Vuse2)$f
-  gee_non_para_p1 =  kgee(x= treatment, y= yob, h = h_value, xgrid= A_list + 0.1,  id=id, V1= Vuse2)$f
-  gee_non_para_p2 =  kgee(x= treatment, y= yob, h = h_value, xgrid= A_list + 0.01,  id=id, V1= Vuse2)$f
-  
-  kgee_na <- as.numeric(gee_non_para_1) -  as.numeric(gee_non_para)
-  kgee_co1 <- 10 * (as.numeric(gee_non_para_p1) -  as.numeric(gee_non_para))
-  kgee_co2 <- 100 * (as.numeric(gee_non_para_p2) -  as.numeric(gee_non_para))
+
+
 
   return(list(gee_na = gee_na, 
               gee_co = gee_co, 
@@ -114,10 +102,6 @@ simu <- function(n, m, data_use = NULL){
               rf_na = rf_na, 
               rf_co1 = rf_co1, 
               rf_co2 = rf_co2, 
-              kgee_na = kgee_na, 
-              kgee_co1 = kgee_co1, 
-              kgee_co2 = kgee_co2, 
-              kgee_curve = as.numeric(gee_non_para), 
               data_generate = data_use))
 }
 
@@ -125,8 +109,7 @@ nsim <- 100
 m <- 5
 
 gee_na_data <- gee_co_data <- gee_co2_data <- rf_na_data <- rf_co1_data <- rf_co2_data <- NULL
-kgee_na_data <- kgee_co1_data <- kgee_co2_data <- NULL
-kgee_curve_data <- NULL
+
 
 data_have <- NULL
 
@@ -145,10 +128,7 @@ for(i in 1:nsim){
   rf_na_data <- cbind(rf_na_data, result$rf_na)
   rf_co1_data <- cbind(rf_co1_data, result$rf_co1)
   rf_co2_data <- cbind(rf_co2_data, result$rf_co2)
-  kgee_na_data <- cbind(kgee_na_data, result$kgee_na)
-  kgee_co1_data <- cbind(kgee_co1_data, result$kgee_co1)
-  kgee_co2_data <- cbind(kgee_co2_data, result$kgee_co2)
-  kgee_curve_data <- cbind(kgee_curve_data, result$kgee_curve)
+
   # save data
   save(gee_na_data, file = paste0("./output/gee_na_", "_data.RData"))
   save(gee_co_data, file = paste0("./output/gee_co_", "_data.RData"))
@@ -156,9 +136,6 @@ for(i in 1:nsim){
   save(rf_na_data, file = paste0("./output/rf_na_", "_data.RData"))
   save(rf_co1_data, file = paste0("./output/rf_co1_", "_data.RData"))
   save(rf_co2_data, file = paste0("./output/rf_co2_", "_data.RData"))
-  save(kgee_na_data, file = paste0("./output/kgee_na_", "_data.RData"))
-  save(kgee_co1_data, file = paste0("./output/kgee_co1_", "_data.RData"))
-  save(kgee_co2_data, file = paste0("./output/kgee_co2_", "_data.RData"))  
   # compare
   gee_na_bias <- rowMeans(gee_na_data) - A_cos_list 
   gee_na_Var <-apply(gee_na_data,1,var)
@@ -175,12 +152,7 @@ for(i in 1:nsim){
   rf_co2_Var <-apply(rf_co2_data,1,var)
 
 
-  kgee_na_bias <- rowMeans(kgee_na_data) - A_cos_list 
-  kgee_na_Var <-apply(kgee_na_data,1,var)
-  kgee_co1_bias <- rowMeans(kgee_co1_data) - A_cos_list 
-  kgee_co1_Var <-apply(kgee_co1_data,1,var)
-  kgee_co2_bias <- rowMeans(kgee_co2_data) - A_cos_list 
-  kgee_co2_Var <-apply(kgee_co2_data,1,var)
+
 
 
 
@@ -200,12 +172,7 @@ for(i in 1:nsim){
   print(rf_co1_bias)
   print("RF complex 0.01")
   print(rf_co2_bias) 
-  print("GEE nonparametric naive")
-  print(kgee_na_bias)
-  print("GEE nonparametric 0.1")
-  print(kgee_co1_bias)
-  print("GEE nonparametric 0.01")
-  print(kgee_co2_bias)
+
   ## Variance
   print("Variance:")
   print("GEE naive")
@@ -220,12 +187,7 @@ for(i in 1:nsim){
   print(rf_co1_Var)
   print("RF complex 0.01")
   print(rf_co2_Var) 
-  print("GEE nonparametric naive")
-  print(kgee_na_Var)
-  print("GEE nonparametric 0.1")
-  print(kgee_co1_Var)
-  print("GEE nonparametric 0.01")
-  print(kgee_co2_Var)
+
   #### current 
   print("Current")
   print("GEE naive")
@@ -240,11 +202,6 @@ for(i in 1:nsim){
   print(result$rf_co1)
   print("RF complex 2")
   print(result$rf_co2)
-  print("GEE nonparametric naive")
-  print(result$kgee_na)
-  print("GEE nonparametric 0.1")
-  print(result$kgee_co1)
-  print("GEE nonparametric 0.01")
-  print(result$kgee_co2)
+
   sink()
 }

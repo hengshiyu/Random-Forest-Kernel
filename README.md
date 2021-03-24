@@ -38,14 +38,14 @@ Random forest is one of the most widely-used methods in machine learning.
 
 Random forest does not enforce a "correct" model between input and output, but empirically focus on the accuracy of prediction. 
 
-<img align="center" src="experiments/figs/MDP.png" width="600">
+
 
 ### Random forest kernel prediction
 
 From random forest, predictions:
 
-	- `E(Y | A1 = a1, ..., AK = aK)`
-	- `E(Y | A1 = c1, ..., AK = cK)`
+	- E(Y | A1 = a1, ..., AK = aK)
+	- E(Y | A1 = c1, ..., AK = cK)
 
 Then, causal effect is estimated "estimate":`E(Y | A1 = a1, ..., AK = aK)` -  `E(Y | A1 = c1, ..., bK = cK)`
 
@@ -54,38 +54,39 @@ Then, causal effect is estimated "estimate":`E(Y | A1 = a1, ..., AK = aK)` -  `E
 - does not have the asymptotic inferences on the estimator
 
 ## Kernel Causal effects
+<img align="center" src="experiments/figs/MDP.png" width="600">
 
 1. GEE:
     `mu(ij) = b0 + b1 Ai` ==>  `b1`
 2. GEE complex 1:
     `mu(ij) = b0 + b1  Ai + b2 Ai^2 + b3 Ai^3` ==> `b1 + 2 b2 Ai + 3b3 Ai^2`
-3. GEE complex 2: $\mu_{ij} = \beta_0 + \beta_{GEEc1} A_{i} + \beta_{GEEc2} A_{i}^2 + \beta_{GEEc3} A_{i}^3 + \beta_{GEEc4} A_{i}^4$\\ $\Rightarrow$ $\hat{\beta}_{GEEc} = \hat{\beta}_{GEEc1} + 2 \hat{\beta}_{GEEc2} A_{i} + 3\hat{\beta}_{GEEc3} A_{i}^2$
+3. GEE complex 2: `mu(ij) = b0 + b1  Ai + b2 Ai^2 + b3 Ai^3 + b4 Ai^4` ==> $b1 + + 2 b2 Ai + 3b3 Ai^2 + 4b4Ai^4$
 4. Random forest kernel:
-    Train $Y_{ij} = RF(A_{i})$\\
-   \circled{0}$\hat{\mathbb{E}}(Y\mid A_{i} = a + 1) - \hat{\mathbb{E}}(Y\mid A_{i} = a )$\\
-    \circled{1} $10\times(\hat{\mathbb{E}}(Y\mid A_{i} = a + 10^{-1}) - \hat{\mathbb{E}}(Y\mid A_{i} = a ))$\\
-    \circled{2}$100\times(\hat{\mathbb{E}}(Y\mid A_{i} = a + 10^{-2}) - \hat{\mathbb{E}}(Y\mid A_{i} = a ))$
+    Train `Yi = RF(Ai)`$\\
+   - E(Y | Ai = a + 1) - E(Y|Ai = a )
+   - 10 x [E(Y | Ai = a + 0.1) - E(Y|Ai = a )]
+   - 100 x [E(Y | Ai = a + 0.01) - E(Y|Ai = a )]
 
 
-The Q learning for DTR typically assumes a deterministic policy. We extend the deterministic DTR/policy to be a stochastic policy and we then have
+## GEE
 
-<img align="center" src="imgs/StoQ-Learning.png" width="600">
-
-
-## Stochastic Q Learning for DTR
+<img align="center" src="experiments/figs/gee.png" width="600">
 
 
-<img align="center" src="imgs/StoQLearningAlgo.png" width="600">
+## RF kernel width 1
 
-## Run experiments
-```
-Rscript run.R
-```
 
-## Some Results
-We have the average lengths of confidence intervals.
+<img align="center" src="experiments/figs/rf.png" width="600">
 
-<img align="center" src="imgs/averageCI.png" width="800">
+## RF kernel width 0.1
+
+
+<img align="center" src="experiments/figs/rf_1.png" width="600">
+
+## RF kernel width 0.01
+
+
+<img align="center" src="experiments/figs/rf_01.png" width="600">
 
 ## References
 * Liang, K. Y., & Zeger, S. L. (1986). Longitudinal data analysis using generalized linear models. Biometrika, 73(1), 13-22.

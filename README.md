@@ -70,11 +70,10 @@ Then, causal effect is estimated "estimate":`E(Y | A1 = a1, ..., AK = aK)` -  `E
 
 ## GEE
 
-<span style="color:red">some *truth* text</span>, 
-<span style="color:blue">some *naive* text</span>.
+![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `true`
+![#1589F0](https://via.placeholder.com/15/1589F0/000000?text=+) `naive`
 <span style="color:orange">some *Complex 1* text</span>.
 <span style="color:purple">some *Complex 2* text</span>.
-
 
 <img align="center" src="results/figs/gee.png" width="600">
 
